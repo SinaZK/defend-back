@@ -18,3 +18,8 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+class UserLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Member
+        fields = ('id', 'username', 'token')
