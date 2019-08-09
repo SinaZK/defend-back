@@ -1,0 +1,8 @@
+.vscode
+.ENV/
+img.jpeg
+db.sqlite3
+models.rtf
+*.pytz
+.DS_STORE
+.python-version
