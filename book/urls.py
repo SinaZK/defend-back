@@ -1,3 +1,6 @@
+from django.urls import path
+from .views import ListBooksView
+
 urlpatterns = [
-    #path('admin/', admin.site.urls),
+    path(r'all/', ListBooksView.as_view(), name="books-all"),
 ]
