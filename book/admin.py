@@ -1,5 +1,9 @@
 from django.contrib import admin
 from .models import Book
+from utils.admin import BaseAdmin
 
-# Register your models here.
-admin.site.register(Book)
+
+class BookAdmin(BaseAdmin):
+    list_display = ('id', 'title', 'author', 'price')
+
+admin.site.register(Book, BookAdmin)

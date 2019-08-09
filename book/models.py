@@ -1,10 +1,12 @@
 from django.db import models
+from utils.models import BaseModel
 
-class Book(models.Model):
+class Book(BaseModel):
 
     title = models.CharField(max_length=255, blank=True, null=True, default='')
     author = models.CharField(max_length=255, blank=True, null=True, default='')
     description = models.TextField(blank=True, null=True, default='')
+    image_url = models.CharField(max_length=400, blank=True, default='')
     price = models.IntegerField(default=0) # Price in Toman
 
     class Meta:
