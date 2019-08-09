@@ -3,6 +3,6 @@
 img.jpeg
 db.sqlite3
 models.rtf
-*.pytz
+*.pyc
 .DS_STORE
 .python-version
