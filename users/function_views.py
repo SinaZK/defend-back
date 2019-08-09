@@ -16,7 +16,7 @@ def login(request):
     try:
         member = Member.objects.get(username=data.get('username', ''))
     except Member.DoesNotExist:
-        return JsonResponse(status=404, data={})
+        return JsonResponse(status=401, data={})
 
     if member.check_password(data.get('password', '')):
         return JsonResponse(status=200, data=UserLoginSerializer(member).data)
