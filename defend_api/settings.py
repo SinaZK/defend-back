@@ -182,4 +182,5 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = 'media/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
-FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("sinazandkarimi@gmail.com", "da5PA@6dTc3SBLj", "ftp.drivehq.com", "21")
+#FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("sinazandkarimi@gmail.com", "da5PA@6dTc3SBLj", "ftp.drivehq.com", "21")
+FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("pz10626", "rA07wmTe", "stg.pz10626.parspack.net", "21")

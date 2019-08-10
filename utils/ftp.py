@@ -1,0 +1,2 @@
+FTP_BASE_URL = ''
+FTP_BOOKS_URL = FTP_BASE_URL + 'books/'
