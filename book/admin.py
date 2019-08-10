@@ -6,11 +6,12 @@ from utils.admin import BaseAdmin
 
 
 class BookAdmin(BaseAdmin):
-    list_display = ('id', 'title', 'author', 'price', 'img', 'img_url', 'removed')
+    list_display = ('id', 'title', 'author', 'price', 'img', 'img_url', 'is_active', 'removed')
+    list_editable = ()
 
     def img(self, obj):
         if obj.image:
-            return mark_safe("<img src={}>".format(obj.image.url))
+            return mark_safe("<img width=50 height=50 src={}>".format(obj.image_url))
         else:
             return "No Image"
     
