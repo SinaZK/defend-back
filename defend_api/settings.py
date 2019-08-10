@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django_permanent',
     'book',
     'magazine',
-    'users'
+    'users',
+    'news',
 ]
 
 AUTH_USER_MODEL = 'users.Member'
