@@ -1,3 +1,5 @@
+import pytz
+from khayyam import *
 from django.db import models
 from utils.models import BaseModel
 from utils.ftp import *
@@ -15,11 +17,12 @@ class News(BaseModel):
 
     @property
     def time(self):
-        return ''
+        tehran = pytz.timezone('Asia/Tehran')
+        return self.created.astimezone(tehran).time().strftime("%H:%M")
     
     @property
     def date(self):
-        return ''
+        return JalaliDate(self.created).__str__()
 
     @property
     def image_url(self):

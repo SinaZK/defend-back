@@ -6,7 +6,7 @@ from utils.admin import BaseAdmin
 
 
 class NewsAdmin(BaseAdmin):
-    list_display = ('id', 'img', 'title', 'is_show', 'img_url')
+    list_display = ('id', 'img', 'title', 'is_show', 'img_url', 'created')
     list_editable = ()
 
     def img(self, obj):
