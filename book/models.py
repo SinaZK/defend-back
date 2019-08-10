@@ -23,7 +23,7 @@ class Book(BaseModel):
     author = models.CharField(max_length=255, blank=True, null=True, default='')
     description = models.TextField(blank=True, null=True, default='')
     price = models.IntegerField(default=0) # Price in Toman
-    image = models.ImageField(null=True, blank=True, upload_to=UploadToPathAndRename("public_html/books"))
+    image = models.FileField(null=True, blank=True, upload_to=UploadToPathAndRename("public_html/books"))
     is_active = models.BooleanField(default=True)
 
     class Meta:
