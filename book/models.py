@@ -8,7 +8,7 @@ class Book(BaseModel):
     description = models.TextField(blank=True, null=True, default='')
     image_url = models.CharField(max_length=400, blank=True, default='')
     price = models.IntegerField(default=0) # Price in Toman
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to='books/')
 
     class Meta:
         verbose_name = "Book"

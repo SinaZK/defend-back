@@ -181,5 +181,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = 'media/'
 
-#DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
-#FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}}:{}}/'.format()
+DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
+FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("sinazandkarimi@gmail.com", "da5PA@6dTc3SBLj", "ftp.drivehq.com", "21")
