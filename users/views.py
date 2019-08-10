@@ -3,6 +3,7 @@ from rest_framework import generics
 from . import models
 from . import serializers
 
-class UserListView(generics.ListCreateAPIView):
+class UserListView(generics.CreateAPIView):
     queryset = models.Member.objects.all()
     serializer_class = serializers.UserSerializer
+    permission_classes = ()
