@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'magazine',
     'users',
     'news',
+    'events',
 ]
 
 AUTH_USER_MODEL = 'users.Member'
