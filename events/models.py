@@ -1,3 +1,4 @@
+from khayyam import JalaliDate
 from django.db import models
 from django.utils import timezone
 
@@ -18,7 +19,7 @@ class Event(BaseModel):
 
     @property
     def jalali_date(self):
-        return JalaliDate(self.created).__str__().replace("-", "/")
+        return JalaliDate(self.date).__str__().replace("-", "/")
 
     @property
     def image_url(self):

@@ -9,6 +9,9 @@ class EventAdmin(BaseAdmin):
     list_display = ('id', 'img', 'jalali_date', 'title', 'created')
     list_editable = ()
 
+    def get_queryset(self, request):
+        return Event.objects.order_by('-date')
+
     def img(self, obj):
         if obj.image:
             return mark_safe("<img width=50 height=50 src={}>".format(obj.image_url))
