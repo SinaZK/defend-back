@@ -11,7 +11,7 @@ class Event(BaseModel):
     location = models.TextField(default='', blank=True)
     date = models.DateField(default=timezone.now)
     time = models.TimeField()
-    image = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "events"))
+    image = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "events"), null=True, blank=True)
 
     class Meta:
         verbose_name = 'رویداد'
