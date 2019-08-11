@@ -22,7 +22,7 @@ class News(BaseModel):
     
     @property
     def date(self):
-        return JalaliDate(self.created).__str__()
+        return JalaliDate(self.created).__str__().replace("-", "/")
 
     @property
     def image_url(self):
@@ -33,5 +33,5 @@ class News(BaseModel):
     @property
     def video_url(self):
         if self.video:
-            return FTP_BASE_URL + self.image.name.replace(FTP_PUBLIC_DIR, '')
+            return FTP_BASE_URL + self.video.name.replace(FTP_PUBLIC_DIR, '')
         return ''
