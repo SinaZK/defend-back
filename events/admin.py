@@ -1,11 +1,37 @@
+from khayyam import JalaliDate
+from jalali_date.admin import ModelAdminJalaliMixin
+from jalali_date.widgets import AdminJalaliDateWidget
+
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from django.db import models
+from django.contrib.admin.widgets import AdminTimeWidget
+from django import forms
 
 from .models import Event
 from utils.admin import BaseAdmin
 
+class EventForm(forms.ModelForm):
 
-class EventAdmin(BaseAdmin):
+    date = forms.DateField(widget=AdminJalaliDateWidget, validators=[], input_formats=['%Y-%m-%d'])
+    time = forms.TimeField(initial="19:00", widget=AdminTimeWidget)
+
+    class Meta:
+        model = Event
+        exclude = []
+
+    def clean(self):
+        value = self.data['date'] 
+        if len(value) > 0:
+            j_year = value.split('-')[0]
+            j_month = value.split('-')[1]
+            j_day = value.split('-')[2]
+            self.cleaned_data['date'] = JalaliDate(year=j_year, month=j_month, day=j_day).todate()
+
+        return self.cleaned_data
+
+class EventAdmin(ModelAdminJalaliMixin, BaseAdmin):
+    form=EventForm
     list_display = ('id', 'img', 'jalali_date', 'title', 'created')
     list_editable = ()
 

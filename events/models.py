@@ -17,6 +17,10 @@ class Event(BaseModel):
         verbose_name = 'رویداد'
         verbose_name_plural = 'رویداد‌ها'
 
+    def __str__(self):
+        return self.title
+    
+
     @property
     def jalali_date(self):
         return JalaliDate(self.date).__str__().replace("-", "/")
