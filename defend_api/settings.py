@@ -42,11 +42,13 @@ INSTALLED_APPS = [
     'reversion',
     'django_permanent',
     'jalali_date',
+    'mptt',
     'book',
     'magazine',
     'users',
     'news',
     'events',
+    'atlas'
 ]
 
 AUTH_USER_MODEL = 'users.Member'
