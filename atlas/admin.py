@@ -9,7 +9,10 @@ class AtlasCategoryAdmin(DraggableMPTTAdmin):
     #list_display = ('id', 'name',)
 
 class AtlasAdmin(BaseAdmin):
-    list_display = ('id', 'name', 'category')
+    list_display = ('id', 'name', 'root_category', 'category')
+
+    def root_category(self, obj):
+        return obj.category.get_root()
 
 
 admin.site.register(Atlas, AtlasAdmin)

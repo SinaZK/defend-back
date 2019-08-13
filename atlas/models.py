@@ -25,6 +25,9 @@ class Atlas(BaseModel):
         verbose_name = 'اطلس'
         verbose_name_plural = 'اطلس‌ها'
     
+    def __str__(self):
+        return self.name
+
     @property
     def image_url(self):
         if self.image:
