@@ -1,4 +1,5 @@
 from khayyam import JalaliDate
+from datetime import datetime
 from jalali_date.admin import ModelAdminJalaliMixin
 from jalali_date.widgets import AdminJalaliDateWidget
 
@@ -13,12 +14,17 @@ from utils.admin import BaseAdmin
 
 class EventForm(forms.ModelForm):
 
-    date = forms.DateField(widget=AdminJalaliDateWidget, validators=[], input_formats=['%Y-%m-%d'])
+    date = forms.DateField(initial="", widget=AdminJalaliDateWidget, validators=[], input_formats=['%Y-%m-%d'])
     time = forms.TimeField(initial="19:00", widget=AdminTimeWidget)
 
     class Meta:
         model = Event
         exclude = []
+
+    def __init__(self, *args, **kwargs):
+        super(EventForm, self).__init__(*args, **kwargs)
+        if 'date' in self.initial:
+            self.initial['date'] = JalaliDate(self.initial['date'])
 
     def clean(self):
         value = self.data['date'] 
