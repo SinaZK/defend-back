@@ -1,14 +1,22 @@
-from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
+from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin, TreeNodeChoiceField
 from django.contrib import admin
+from django import forms
 
 from utils.admin import BaseAdmin
 from .models import AtlasCategory, Atlas
 
 class AtlasCategoryAdmin(DraggableMPTTAdmin):
     pass
-    #list_display = ('id', 'name',)
+
+class AtlasAdminForm(forms.ModelForm):
+    category = TreeNodeChoiceField(queryset=AtlasCategory.objects.all())
+
+    class Meta:
+        model = Atlas
+        exclude = []
 
 class AtlasAdmin(BaseAdmin):
+    form=AtlasAdminForm
     list_display = ('id', 'name', 'root_category', 'category')
 
     def root_category(self, obj):

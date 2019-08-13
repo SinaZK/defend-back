@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django_permanent',
     'jalali_date',
     'mptt',
-    'drf_multiple_model',
     'book',
     'magazine',
     'users',
