@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics, views
 from rest_framework.response import Response
-from drf_multiple_model.views import ObjectMultipleModelAPIView
 
 from utils.paginations import *
 from .serializers import AtlasSerializer, AtlasAndCategorySerializer, AtlasCategorySerializer
@@ -17,15 +16,9 @@ class AtlasListView(generics.ListAPIView):
         return Atlas.objects.filter(category__in=descendant_cats)
 
 class AtlasAndCategoriesListView(views.APIView, StandardResultsSetPagination):
-    #pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
         return Atlas.objects.all()
-
-    #def get_queryset(self):
-    #    cat_id = self.kwargs['cat_id']
-    #    descendant_cats = AtlasCategory.objects.filter(id=cat_id).get_descendants(include_self=True)
-    #    return Atlas.objects.filter(category__in=descendant_cats)
 
     def get(self, request, format=None, **kwargs):
         cat_id = self.kwargs['cat_id']
