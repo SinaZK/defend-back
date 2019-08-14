@@ -1,6 +1,6 @@
 from rest_framework import generics, filters
-from .serializers import BookSerializer
-from .models import Book
+from .serializers import BookSerializer, BookOrderSerializer
+from .models import Book, BookOrder
 from utils.paginations import StandardResultsSetPagination
 
 class ListBooksView(generics.ListAPIView):
@@ -9,3 +9,13 @@ class ListBooksView(generics.ListAPIView):
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['id', 'created']
     pagination_class = StandardResultsSetPagination
+
+class BookOrderListView(generics.ListAPIView):
+    queryset = BookOrder.objects.all()
+    serializer_class = BookOrderSerializer
+    pagination_class = StandardResultsSetPagination
+
+class BookOrderCreateView(generics.CreateAPIView):
+    queryset = BookOrder.objects.all()
+    serializer_class = BookOrderSerializer
+
