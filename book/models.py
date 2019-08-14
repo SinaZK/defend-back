@@ -40,7 +40,13 @@ state_choices = [
 class BookOrder(BaseModel):
     state = models.CharField(max_length=30, choices=state_choices, default='checkout')
 
-    
+    @property
+    def total_price(self):
+        total_price = 0
+        for item in self.items.all():
+            total_price += item.total_price
+        
+        return total_price
 
 class BookShopItem(BaseModel):
     book = models.ForeignKey("Book", verbose_name=_("book"), on_delete=models.CASCADE, null=True, blank=True)
@@ -50,5 +56,9 @@ class BookShopItem(BaseModel):
     def get_admin_url(self):
         return "/admin/book/bookshopitem/%d/" %self.id
 
+    @property
+    def total_price(self):
+        return self.book.price * self.quantity
+
     def __str__(self):
-        return '{}-{}'.format(self.book, self.quantity)
+        return '{}-{}: {} Tomans'.format(self.book, self.quantity, self.total_price)
