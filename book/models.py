@@ -48,6 +48,10 @@ class BookOrder(BaseModel):
         
         return total_price
 
+    @property
+    def pay_url(self): # generate at create view
+        return "http://google.com"
+
 class BookShopItem(BaseModel):
     book = models.ForeignKey("Book", verbose_name=_("book"), on_delete=models.CASCADE, null=True, blank=True)
     quantity = models.IntegerField(default=1)

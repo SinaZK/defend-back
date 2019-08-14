@@ -5,7 +5,8 @@ from .models import Book, BookOrder, BookShopItem
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ("title", "author", "description", "price", "image_url")
+        fields = ("id", "title", "author", "description", "price", "image_url")
+        read_only_fields = ("id", )
 
 class BookItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,9 +15,10 @@ class BookItemSerializer(serializers.ModelSerializer):
 
 class BookOrderSerializer(serializers.ModelSerializer):
     items = BookItemSerializer(many=True)
+
     class Meta:
         model = BookOrder
-        fields = ("state", 'items')
+        fields = ("state", 'items',)
         read_only_fields = ('state', )
 
     def create(self, validated_data):
@@ -34,3 +36,11 @@ class BookOrderSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Shop items could not be empty")
 
         return data
+
+class BookOrderCreateSerializer(BookOrderSerializer):
+    items = BookItemSerializer(many=True)
+
+    class Meta:
+        model = BookOrder
+        fields = ('state', 'items', 'pay_url')
+        read_only_fields = ('state', )
