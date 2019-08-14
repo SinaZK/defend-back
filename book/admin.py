@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Book
+from .models import Book, BookOrder, BookShopItem
 from utils.admin import BaseAdmin
 
 
@@ -21,4 +21,19 @@ class BookAdmin(BaseAdmin):
     img.short_description = 'عکس'
     img_url.short_description = 'دانلود عکس'
 
+class BookOrderAdmin(BaseAdmin):
+    list_display = ('id', 'state', '_items')
+    list_filter = ('state', )
+
+    def _items(self, obj):
+        html = ""
+        for item in obj.items.all():
+            html += '<p><a href="%s">%s</a></p>' %(item.get_admin_url(), item.__str__())
+        return mark_safe(html)
+
+class BookItemAdmin(BaseAdmin):
+    list_display = ('id', 'book', 'quantity')
+
 admin.site.register(Book, BookAdmin)
+admin.site.register(BookShopItem, BookItemAdmin)
+admin.site.register(BookOrder, BookOrderAdmin)
