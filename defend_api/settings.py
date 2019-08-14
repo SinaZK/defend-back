@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'users',
     'news',
     'events',
-    'atlas'
+    'atlas',
+    'payment',
 ]
 
 AUTH_USER_MODEL = 'users.Member'
