@@ -22,9 +22,12 @@ class BookOrderSerializer(serializers.ModelSerializer):
         read_only_fields = ('state', )
 
     def create(self, validated_data):
-        order = BookOrder.objects.create()
-        items = validated_data['items']
+        print(validated_data)
+        order = BookOrder.objects.create(billing_address=validated_data['billing_address'],
+            billing_phone=validated_data['billing_phone'],
+            billing_name=validated_data['billing_name'])
 
+        items = validated_data.pop('items')
         for item in items:
             BookShopItem.objects.create(order=order, book=item['book'], quantity=item['quantity']) 
 
@@ -42,5 +45,5 @@ class BookOrderCreateSerializer(BookOrderSerializer):
 
     class Meta:
         model = BookOrder
-        fields = ('state', 'items', 'pay_url')
+        fields = ('state', 'items', 'pay_url', 'billing_address', 'billing_name', 'billing_phone')
         read_only_fields = ('state', )
