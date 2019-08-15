@@ -18,7 +18,7 @@ class BookOrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BookOrder
-        fields = ("state", 'items',)
+        fields = ("state", 'items', 'billing_address', 'billing_name', 'billing_phone')
         read_only_fields = ('state', )
 
     def create(self, validated_data):

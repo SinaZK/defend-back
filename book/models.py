@@ -39,6 +39,10 @@ state_choices = [
 
 class BookOrder(BaseModel):
     state = models.CharField(max_length=30, choices=state_choices, default='checkout')
+    member = models.ForeignKey('users.Member', on_delete=models.CASCADE, null=True, blank=True)
+    billing_name = models.CharField(max_length=250, blank=True, null=True)
+    billing_address = models.TextField(blank=True)
+    billing_phone = models.CharField(max_length=20, blank=True)
 
     @property
     def total_price(self):

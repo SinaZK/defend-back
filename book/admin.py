@@ -22,7 +22,7 @@ class BookAdmin(BaseAdmin):
     img_url.short_description = 'دانلود عکس'
 
 class BookOrderAdmin(BaseAdmin):
-    list_display = ('id', 'state', '_items', 'total_price')
+    list_display = ('id', 'state', '_items', 'total_price', 'billing_address', 'billing_phone', 'billing_name')
     list_filter = ('state', )
 
     def _items(self, obj):
