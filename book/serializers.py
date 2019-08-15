@@ -22,10 +22,10 @@ class BookOrderSerializer(serializers.ModelSerializer):
         read_only_fields = ('state', )
 
     def create(self, validated_data):
-        print(validated_data)
         order = BookOrder.objects.create(billing_address=validated_data['billing_address'],
             billing_phone=validated_data['billing_phone'],
-            billing_name=validated_data['billing_name'])
+            billing_name=validated_data['billing_name'],
+            member=self.context['request'].user)
 
         items = validated_data.pop('items')
         for item in items:
