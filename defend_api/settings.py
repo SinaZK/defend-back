@@ -204,7 +204,6 @@ JALALI_DATE_DEFAULTS = {
 
 LANGUAGE_CODE = 'en-us'
 
-#TIME_ZONE = 'ASIA/TEHRAN'
 TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
@@ -218,6 +217,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = 'media/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
