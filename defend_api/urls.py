@@ -23,4 +23,5 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('events/', include('events.urls')),
     path('atlas/', include('atlas.urls')),
+    path('', include('main.urls')),
 ]
