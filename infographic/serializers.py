@@ -12,8 +12,7 @@ class InfoCategorySerializer(serializers.ModelSerializer):
         fields = ('name', 'id')
 
 class InfoAndCategorySerializer(serializers.ModelSerializer):
-    #next_categories = serializers.ListField(child=AtlasCategorySerializer())
 
     class Meta:
-        model = Atlas
+        model = Infographic
         fields = ("name", "body", "category", "image_url")
