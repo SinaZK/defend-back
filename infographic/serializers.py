@@ -4,7 +4,7 @@ from .models import Infographic, InfographicCategory
 class InfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Infographic
-        fields = ("name", "body", "category", "image_url")
+        fields = ("name", "top_text", "bottom_text","category", "image_url")
 
 class InfoCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,4 +15,4 @@ class InfoAndCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Infographic
-        fields = ("name", "body", "category", "image_url")
+        fields = ("name", "top_text", "bottom_text","category", "image_url")

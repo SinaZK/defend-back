@@ -21,7 +21,8 @@ class InfographicCategory(MPTTModel, BaseModel):
 
 class Infographic(BaseModel):
     name = models.CharField(max_length=250, blank=True)
-    body = models.TextField(blank=True)
+    top_text = models.TextField(blank=True)
+    bottom_text = models.TextField(blank=True)
     image = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "info"), null=True, blank=True)
     category = models.ForeignKey(InfographicCategory, on_delete=models.CASCADE ,related_name='infos')
 
