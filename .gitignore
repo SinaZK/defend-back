@@ -2,6 +2,7 @@
 .ENV/
 img.jpeg
 db.sqlite3
+mydatabase
 models.rtf
 *.pyc
 .DS_STORE
