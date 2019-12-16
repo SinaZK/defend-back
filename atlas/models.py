@@ -8,6 +8,10 @@ class AtlasCategory(MPTTModel, BaseModel):
     name = models.CharField(max_length=250)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 
+    class Meta:
+        verbose_name = 'دسته‌بندی'
+        verbose_name_plural = 'دسته‌بندی‌ها'
+
     class MPTTMeta:
         order_insertion_by = ['id']
 
@@ -22,8 +26,8 @@ class Atlas(BaseModel):
     category = models.ForeignKey(AtlasCategory, on_delete=models.CASCADE ,related_name='atlases')
 
     class Meta:
-        verbose_name = 'اطلس'
-        verbose_name_plural = 'اطلس‌ها'
+        verbose_name = 'جنگ‌افزار'
+        verbose_name_plural = 'جنگ‌افزار‌ها'
     
     def __str__(self):
         return self.name
