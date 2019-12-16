@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'news',
     'events',
     'atlas',
+    'infographic',
     'payment',
     'main',
 ]
