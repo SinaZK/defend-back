@@ -38,7 +38,8 @@ class EventForm(forms.ModelForm):
 
 class EventAdmin(ModelAdminJalaliMixin, BaseAdmin):
     form=EventForm
-    list_display = ('id', 'img', 'jalali_date', 'title', 'created')
+    list_display = ('id', 'img', 'jalali_date', 'title', 'user_event','admin_approved','created')
+    list_filter = ('user_event', 'admin_approved')
     list_editable = ()
 
     def get_queryset(self, request):

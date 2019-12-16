@@ -1,3 +1,15 @@
 from django.shortcuts import render
+from rest_framework import generics, views
+from rest_framework.response import Response
 
-# Create your views here.
+from utils.paginations import *
+from .models import Event
+from .serializers import EventSerializer
+
+class UserEventCreateView(generics.CreateAPIView):
+    serializer_class = EventSerializer
+    pagination_class = StandardResultsSetPagination
+    queryset = Event.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user, user_event=True)

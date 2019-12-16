@@ -24,5 +24,7 @@ def list_event_by_date(request):
 
     events = [] 
     for e in Event.objects.filter(date__lte=end_date.todate(), date__gte=start_date.todate()):
+        if e.user_event and not e.admin_approved:
+            continue
         events.append(EventSerializer(e).data)
     return JsonResponse(status=200, data={'results': events})

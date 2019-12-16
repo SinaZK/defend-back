@@ -12,6 +12,9 @@ class Event(BaseModel):
     date = models.DateField(default=timezone.now)
     time = models.TimeField()
     image = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "events"), null=True, blank=True)
+    user_event = models.BooleanField(default=False)
+    admin_approved = models.BooleanField(default=False)
+    user = models.ForeignKey("users.Member", on_delete=models.CASCADE, null=True, default=None, blank=True)
 
     class Meta:
         verbose_name = 'رویداد'
