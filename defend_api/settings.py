@@ -90,16 +90,24 @@ WSGI_APPLICATION = 'defend_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'defend',
-        'USER': 'root',
-        'PASSWORD': os.environ.get("DB_PASSWORD"),
-        'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+if os.environ.get("db") == 'debug':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'mydatabase',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'defend',
+            'USER': 'root',
+            'PASSWORD': os.environ.get("DB_PASSWORD"),
+            'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
+        }
+    }
 
 
 # Password validation
@@ -223,4 +231,4 @@ MEDIA_ROOT = 'media/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
 #FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("sinazandkarimi@gmail.com", "da5PA@6dTc3SBLj", "ftp.drivehq.com", "21")
-FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("pz10626", "rA07wmTe", "stg.pz10626.parspack.net", "21")
+FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("pz10626", "rA07wmTe", "130.185.79.141", "21")

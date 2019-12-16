@@ -15,7 +15,7 @@ class MemberAdmin(BaseUserAdmin, DjangoUserAdmin):
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
 
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        (_('Important dates'), {'fields': ('date_joined', )}),
     )
     list_display = ('id', 'username', 'phone_number')
     list_filter = ('is_staff', 'last_login', 'created')
