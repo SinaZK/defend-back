@@ -28,9 +28,9 @@ class InfoAndCategoriesListView(views.APIView, StandardResultsSetPagination):
             categories = InfoCategorySerializer(descendant_cats, many=True)
         else:
             categories = InfoCategorySerializer(InfographicCategory.objects.get(id=cat_id).get_children(), many=True)
-        Infos = InfoSerializer(self.paginate_queryset(Infoghraphic.objects.filter(category__in=descendant_cats), request=request), many=True)
+        info = InfoSerializer(self.paginate_queryset(Infographic.objects.filter(category__in=descendant_cats), request=request), many=True)
 
         return self.get_paginated_response({
-            'infos': infos.data,
+            'info': info.data,
             'categories': categories.data,
         })
