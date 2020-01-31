@@ -46,3 +46,11 @@ class Idea(BaseModel):
     state_text = models.CharField(max_length=100, default='', blank=True, null=True)
 
     code = models.CharField(max_length=10, default=code_generator)
+
+    @property
+    def state_fa(self):
+        for st in state_choices:
+            if st[0] == self.state:
+                return st[1]
+
+        return self.state
