@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'infographic',
     'payment',
     'main',
-    'idea'
+    'idea',
+    'ebook',
 ]
 
 AUTH_USER_MODEL = 'users.Member'

@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from utils.models import BaseModel
 from utils.ftp import *
+from utils.utils import code_generator
 
 class Book(BaseModel):
     title = models.CharField(max_length=255, blank=True, null=True, default='')
@@ -43,6 +44,7 @@ class BookOrder(BaseModel):
     billing_name = models.CharField(max_length=250, blank=True, null=True)
     billing_address = models.TextField(blank=True)
     billing_phone = models.CharField(max_length=20, blank=True)
+    token = models.CharField(max_length=30, default=code_generator)
 
     @property
     def total_price(self):
