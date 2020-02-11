@@ -36,6 +36,14 @@ class EBook(BaseModel):
             return FTP_BASE_URL + self.image.name.replace(FTP_PUBLIC_DIR, '')
         return ''
 
+    def has_purchased(self, user):
+        if self.price == 0:
+            return True
+
+        purchases = EBookOrder.objects.filter(member=user, ebook=self, state='paid')
+        return len(purchases) > 0
+
+
 state_choices = [
     ('checkout', 'Checkout'),
     ('paid', 'Paid'),
