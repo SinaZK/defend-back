@@ -12,7 +12,6 @@ class AtlasCategorySerializer(serializers.ModelSerializer):
         fields = ('name', 'id')
 
 class AtlasAndCategorySerializer(serializers.ModelSerializer):
-    #next_categories = serializers.ListField(child=AtlasCategorySerializer())
     salam = serializers.SerializerMethodField()
 
     class Meta:

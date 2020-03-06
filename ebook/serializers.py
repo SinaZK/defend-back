@@ -17,3 +17,10 @@ class EBookSerializer(serializers.ModelSerializer):
         if not instance.has_purchased(user):
             ret.pop("file_url")
         return ret
+
+class EBookSearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EBook
+        fields = ("id", "title", "author", "image_url")
+        read_only_fields = ("id", )
+
