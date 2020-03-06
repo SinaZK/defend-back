@@ -11,6 +11,9 @@ class Event(BaseModel):
     location = models.TextField(default='', blank=True)
     date = models.DateField(default=timezone.now)
     time = models.TimeField()
+    end_date = models.DateField(default=timezone.now)
+    end_time = models.TimeField()
+    info = models.CharField(max_length=300, blank=True, default='')
     image = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "events"), null=True, blank=True)
     user_event = models.BooleanField(default=False)
     admin_approved = models.BooleanField(default=False)
@@ -23,10 +26,13 @@ class Event(BaseModel):
     def __str__(self):
         return self.title
     
-
     @property
     def jalali_date(self):
         return JalaliDate(self.date).__str__().replace("-", "/")
+
+    @property
+    def jalali_end_date(self):
+        return JalaliDate(self.end_date).__str__().replace("-", "/")
 
     @property
     def image_url(self):
