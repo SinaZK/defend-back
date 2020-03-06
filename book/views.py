@@ -4,7 +4,7 @@ from .models import Book, BookOrder
 from utils.paginations import StandardResultsSetPagination
 
 class ListBooksView(generics.ListAPIView):
-    queryset = Book.objects.all().order_by("created")
+    queryset = Book.objects.all().filter(is_active=True).order_by("created")
     serializer_class = BookSerializer
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['id', 'created']

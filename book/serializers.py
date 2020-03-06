@@ -5,7 +5,7 @@ from .models import Book, BookOrder, BookShopItem
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = ("id", "title", "author", "description", "price", "image_url")
+        fields = ("id", "title", "author", "description", "price", "image_url", "translator", "publish_year")
         read_only_fields = ("id", )
 
 class BookItemSerializer(serializers.ModelSerializer):

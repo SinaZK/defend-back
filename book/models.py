@@ -8,6 +8,8 @@ from utils.utils import code_generator
 class Book(BaseModel):
     title = models.CharField(max_length=255, blank=True, null=True, default='')
     author = models.CharField(max_length=255, blank=True, null=True, default='')
+    translator = models.CharField(max_length=255, blank=True, null=True, default='')
+    publish_year = models.CharField(max_length=255, blank=True, null=True, default='')
     description = models.TextField(blank=True, null=True, default='')
     price = models.IntegerField(default=0) # Price in Toman
     image = models.FileField(null=True, blank=True, upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "books"))
