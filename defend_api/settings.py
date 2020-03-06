@@ -233,5 +233,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = 'media/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
-#FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("sinazandkarimi@gmail.com", "da5PA@6dTc3SBLj", "ftp.drivehq.com", "21")
-FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("pz10626", "rA07wmTe", "130.185.79.141", "21")
+#FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("pz10626", "rA07wmTe", "130.185.79.179", "21")
+FTP_STORAGE_LOCATION = 'ftp://{}:{}@{}:{}/'.format("pz10626", "rA07wmTe", "dl.defenddefend.com", "21")
