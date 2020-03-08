@@ -35,24 +35,28 @@ def search_all(request):
     data = request.data
     search = data.get("search", None)
 
-    print(search)
-
     atlases = Atlas.objects.all()
     books = Book.objects.all()
     infos = Infographic.objects.all()
     ebooks = EBook.objects.all()
 
     if search:
-        atlases = atlases.filter(name__icontains=search)
-        books = books.filter(title__icontains=search)
-        infos = infos.filter(name__icontains=search)
-        ebooks = ebooks.filter(title__icontains=search)
+        atlases = atlases.filter(name__icontains=search)[:3]
+        books = books.filter(title__icontains=search)[:3]
+        infos = infos.filter(name__icontains=search)[:3]
+        ebooks = ebooks.filter(title__icontains=search)[:3]
+    else:
+        atlases = atlases[:3]
+        books = books[:3]
+        infos = infos[:3]
+        ebooks = ebooks[:3]
+
+
     
-    print(ebooks)
-    
-    return JsonResponse(data={
+    data={
         'atlas': AtlasSerializer(atlases, many=True).data,
         'book': BookSerializer(books, many=True).data,
         'info': InfoSerializer(infos, many=True).data,
         'ebook': EBookSearchSerializer(ebooks, many=True).data,
-    })
+    }
+    return JsonResponse(data=data)

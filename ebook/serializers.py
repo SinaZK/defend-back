@@ -21,6 +21,6 @@ class EBookSerializer(serializers.ModelSerializer):
 class EBookSearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = EBook
-        fields = ("id", "title", "author", "image_url")
+        fields = ("id", "title", "author", "description", "price", "image_url", "file_url")
         read_only_fields = ("id", )
 
