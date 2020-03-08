@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics, views
+from rest_framework import generics, views, filters
 from rest_framework.response import Response
 
 from utils.paginations import *
@@ -34,3 +34,11 @@ class InfoAndCategoriesListView(views.APIView, StandardResultsSetPagination):
             'info': info.data,
             'categories': categories.data,
         })
+
+class InfoSearchView(generics.ListAPIView):
+    queryset = Infographic.objects.all().order_by("created")
+    serializer_class = InfoSerializer
+    search_fields = ['name']
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter)
+    ordering_fields = ['id', 'created']
+    pagination_class = StandardResultsSetPagination
