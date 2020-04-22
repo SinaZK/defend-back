@@ -5,6 +5,11 @@ from django.utils import timezone
 from utils.models import BaseModel
 from utils.ftp import *
 
+type_choices = [
+    ('regular', 'Regular'),
+    ('thesis', 'Thesis'),
+]
+
 class Event(BaseModel):
     title = models.CharField(max_length=300, blank=True, default='')
     body = models.TextField(blank=True, default='')
@@ -18,6 +23,11 @@ class Event(BaseModel):
     user_event = models.BooleanField(default=False)
     admin_approved = models.BooleanField(default=False)
     user = models.ForeignKey("users.Member", on_delete=models.CASCADE, null=True, default=None, blank=True)
+    # Tez Defend Fields:
+    type = models.CharField(max_length=30, choices=type_choices, default='Regular')
+    student_name = models.CharField(max_length=300, blank=True, default='')
+    teacher_name = models.CharField(max_length=300, blank=True, default='')
+    university = models.CharField(max_length=300, blank=True, default='')
 
     class Meta:
         verbose_name = 'رویداد'
