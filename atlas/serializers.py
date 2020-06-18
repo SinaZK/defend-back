@@ -4,7 +4,7 @@ from .models import Atlas, AtlasCategory
 class AtlasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Atlas
-        fields = ("name", "body", "category", "image_url")
+        fields = ("name", "body", "category", "image_url", "video_url")
 
 class AtlasCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,7 +16,5 @@ class AtlasAndCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Atlas
-        fields = ("name", "body", "category", "image_url", "salam")
+        fields = ("name", "body", "category", "image_url")
 
-    def get_salam(self, obj):
-        return "salam "

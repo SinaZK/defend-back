@@ -23,11 +23,12 @@ class Atlas(BaseModel):
     name = models.CharField(max_length=250, blank=True)
     body = models.TextField(blank=True)
     image = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "atlas"), null=True, blank=True)
+    video = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "atlas"), null=True, blank=True)
     category = models.ForeignKey(AtlasCategory, on_delete=models.CASCADE ,related_name='atlases')
 
     class Meta:
-        verbose_name = 'جنگ‌افزار'
-        verbose_name_plural = 'جنگ‌افزار‌ها'
+        verbose_name = 'سامانه‌'
+        verbose_name_plural = 'سامانه‌ها'
     
     def __str__(self):
         return self.name
@@ -36,4 +37,10 @@ class Atlas(BaseModel):
     def image_url(self):
         if self.image:
             return FTP_BASE_URL + self.image.name.replace(FTP_PUBLIC_DIR, '')
+        return ''
+
+    @property
+    def video_url(self):
+        if self.video:
+            return FTP_BASE_URL + self.video.name.replace(FTP_PUBLIC_DIR, '')
         return ''
