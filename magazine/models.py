@@ -13,6 +13,10 @@ class MagazineCategory(BaseModel):
             return FTP_BASE_URL + self.image.name.replace(FTP_PUBLIC_DIR, '')
         return ''
 
+    def __str__(self):
+        return self.title
+    
+
     class Meta:
         verbose_name = "دسته مجله"
         verbose_name_plural = "دسته مجله"
@@ -27,6 +31,7 @@ class Magazine(BaseModel):
     is_active = models.BooleanField(default=True)
     year = models.IntegerField(default=1390)
     number = models.IntegerField(default=1)
+    category = models.ForeignKey("magazine.MagazineCategory", verbose_name="magazines", on_delete=models.CASCADE, default=None, blank=True, null=True)
 
     class Meta:
         verbose_name = "مجله"

@@ -6,7 +6,7 @@ from utils.admin import BaseAdmin
 
 
 class MagazineAdmin(BaseAdmin):
-    list_display = ('id', 'title', 'author', 'price', 'img', 'img_url', 'file_url','is_active')
+    list_display = ('id', 'category', 'title', 'author', 'price', 'img', 'img_url', 'file_url','is_active')
     list_editable = ()
 
     def img(self, obj):
