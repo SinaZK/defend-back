@@ -26,5 +26,6 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('atlas/', include('atlas.urls')),
     path('info/', include('infographic.urls')),
+    path('magazine/', include('magazine.urls')),
     path('', include('main.urls')),
 ]
