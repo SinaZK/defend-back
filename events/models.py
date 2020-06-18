@@ -1,6 +1,7 @@
 from khayyam import JalaliDate
 from django.db import models
 from django.utils import timezone
+import datetime
 
 from utils.models import BaseModel
 from utils.ftp import *
@@ -15,9 +16,9 @@ class Event(BaseModel):
     body = models.TextField(blank=True, default='')
     location = models.TextField(default='', blank=True)
     date = models.DateField(default=timezone.now)
-    time = models.TimeField()
+    time = models.TimeField(default=datetime.time(12, 00))
     end_date = models.DateField(default=timezone.now)
-    end_time = models.TimeField()
+    end_time = models.TimeField(default=datetime.time(12, 00))
     info = models.CharField(max_length=300, blank=True, default='')
     image = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "events"), null=True, blank=True)
     user_event = models.BooleanField(default=False)

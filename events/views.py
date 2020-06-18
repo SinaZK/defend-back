@@ -11,7 +11,11 @@ class UserEventCreateView(generics.CreateAPIView):
     serializer_class = EventSerializer
     pagination_class = StandardResultsSetPagination
     queryset = Event.objects.all()
-    parser_classes = (MultiPartParser, FormParser,)
+    parser_classes = (MultiPartParser, JSONParser,)
+
+    def post(self, request, *args, **kwargs):
+        print(request.data)
+        return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, user_event=True)
