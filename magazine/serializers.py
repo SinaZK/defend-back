@@ -5,7 +5,7 @@ from .models import Magazine, MagazineCategory, MagazineOrder
 class MagazineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Magazine
-        fields = ("id", "title", "author", "description", "price", "image_url", "file_url")
+        fields = ("id", "title", "author", "description", "price", "image_url", "file_url", "year")
         read_only_fields = ("id", )
 
     def __init__(self, instance=None, data={}, **kwargs):
@@ -22,4 +22,10 @@ class MagazineSearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Magazine
         fields = ("id", "title", "author", "description", "price", "image_url", "file_url")
+        read_only_fields = ("id", )
+
+class MagazineCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MagazineCategory
+        fields = ("id", "title", "image_url")
         read_only_fields = ("id", )
