@@ -9,7 +9,7 @@ class AtlasSerializer(serializers.ModelSerializer):
 class AtlasCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = AtlasCategory
-        fields = ('name', 'id')
+        fields = ('name', 'id', 'image_url')
 
 class AtlasAndCategorySerializer(serializers.ModelSerializer):
     salam = serializers.SerializerMethodField()
@@ -17,4 +17,3 @@ class AtlasAndCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Atlas
         fields = ("name", "body", "category", "image_url")
-

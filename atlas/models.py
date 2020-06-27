@@ -6,6 +6,7 @@ from utils.ftp import *
 
 class AtlasCategory(MPTTModel, BaseModel):
     name = models.CharField(max_length=250)
+    image = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "atlas"), null=True, blank=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 
     class Meta:
@@ -17,6 +18,12 @@ class AtlasCategory(MPTTModel, BaseModel):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def image_url(self):
+        if self.image:
+            return FTP_BASE_URL + self.image.name.replace(FTP_PUBLIC_DIR, '')
+        return ''
     
 
 class Atlas(BaseModel):
