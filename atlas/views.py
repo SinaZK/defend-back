@@ -12,13 +12,13 @@ class AtlasListView(generics.ListAPIView):
 
     def get_queryset(self):
         cat_id = self.kwargs['cat_id']
-        descendant_cats = AtlasCategory.objects.filter(id=cat_id).get_descendants(include_self=True)
+        descendant_cats = AtlasCategory.objects.filter(id=cat_id, removed=None).get_descendants(include_self=True)
         return Atlas.objects.filter(category__in=descendant_cats)
 
 class AtlasCategoryListView(views.APIView, StandardResultsSetPagination):
 
     def get_queryset(self):
-        return AtlasCategory.objects.all()
+        return AtlasCategory.objects.filter(removed=None)
 
     def get(self, request, format=None, **kwargs):
         cat_id = self.kwargs['cat_id']
@@ -36,7 +36,7 @@ class AtlasCategoryListView(views.APIView, StandardResultsSetPagination):
 class AtlasAndCategoriesListView(views.APIView, StandardResultsSetPagination):
 
     def get_queryset(self):
-        return Atlas.objects.all()
+        return Atlas.objects.filter(removed=None)
 
     def get(self, request, format=None, **kwargs):
         cat_id = self.kwargs['cat_id']
