@@ -48,6 +48,8 @@ class AtlasAndCategoriesListView(views.APIView, StandardResultsSetPagination):
             categories = AtlasCategorySerializer(AtlasCategory.objects.get(id=cat_id).get_children().filter(removed=None), many=True)
         atlases = AtlasSerializer(self.paginate_queryset(Atlas.objects.filter(category__in=descendant_cats).filter(removed=None), request=request), many=True)
 
+        print(categories)
+
         return self.get_paginated_response({
             'atlases': atlases.data,
             'categories': categories.data,
