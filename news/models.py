@@ -35,3 +35,7 @@ class News(BaseModel):
         if self.video:
             return FTP_BASE_URL + self.video.name.replace(FTP_PUBLIC_DIR, '')
         return ''
+
+    def __str__(self):
+        return str(self.id) + "|" + self.title
+    

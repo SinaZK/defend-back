@@ -23,9 +23,9 @@ def sync(request):
     data = request.data
     user = request.user
     
-    new = News.objects.all().filter(is_show=True).order_by("-created")[0]
+    new = News.objects.all().filter(is_show=True).order_by("-id")[:3]
     return JsonResponse(data={
-        'news': NewsSerializer(new).data,
+        'news': NewsSerializer(new, many=True).data,
     })
 
 @api_view(['POST', ])
