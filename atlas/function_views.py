@@ -19,7 +19,7 @@ def AtlasCategoryListView(request, cat_id):
         count = AtlasCategory.objects.get(id=cat_id).get_children().count()
         if count == 0:
             last_cat = True
-        categories = AtlasCategorySerializer(AtlasCategory.objects.get(id=cat_id).get_children().filter(removed=None), many=True)
+        categories = AtlasCategorySerializer(AtlasCategory.objects.get(id=cat_id, removed=None).get_children().filter(removed=None), many=True)
     
     if last_cat:
         atlases = AtlasSerializer(Atlas.objects.filter(category__id=cat_id), many=True)
