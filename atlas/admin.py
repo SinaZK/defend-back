@@ -8,8 +8,7 @@ from utils.admin import BaseAdmin
 from .models import AtlasCategory, Atlas
 
 class AtlasCategoryAdmin(DraggableMPTTAdmin):
-   def get_queryset(self, request):
-        return super().get_queryset(request).filter(removed=None)
+   pass
 
 class AtlasAdminForm(forms.ModelForm):
     category = TreeNodeChoiceField(queryset=AtlasCategory.objects.all())
@@ -18,7 +17,7 @@ class AtlasAdminForm(forms.ModelForm):
         model = Atlas
         exclude = []
 
-class AtlasAdmin(BaseAdmin):
+class AtlasAdmin(admin.ModelAdmin):
     form=AtlasAdminForm
     list_display = ('id', 'name', 'root_category', 'category')
 

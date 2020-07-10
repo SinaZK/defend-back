@@ -13,13 +13,13 @@ def AtlasCategoryListView(request, cat_id):
     descendant_cats = AtlasCategory.objects.filter(id=cat_id).get_descendants(include_self=True)
     last_cat = False
     if descendant_cats.count() == 0:
-        descendant_cats = AtlasCategory.objects.filter(parent=None, removed=None)
+        descendant_cats = AtlasCategory.objects.filter(parent=None)
         categories = AtlasCategorySerializer(descendant_cats, many=True)
     else:
         count = AtlasCategory.objects.get(id=cat_id).get_children().count()
         if count == 0:
             last_cat = True
-        categories = AtlasCategorySerializer(AtlasCategory.objects.get(id=cat_id, removed=None).get_children().filter(removed=None), many=True)
+        categories = AtlasCategorySerializer(AtlasCategory.objects.get(id=cat_id).get_children(), many=True)
     
     if last_cat:
         atlases = AtlasSerializer(Atlas.objects.filter(category__id=cat_id), many=True)

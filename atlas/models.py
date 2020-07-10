@@ -4,7 +4,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 from utils.ftp import *
 
-class AtlasCategory(MPTTModel, BaseModel):
+class AtlasCategory(MPTTModel, models.Model):
     name = models.CharField(max_length=250)
     image = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "atlas"), null=True, blank=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
@@ -26,7 +26,7 @@ class AtlasCategory(MPTTModel, BaseModel):
         return ''
     
 
-class Atlas(BaseModel):
+class Atlas(models.Model):
     name = models.CharField(max_length=250, blank=True)
     body = models.TextField(blank=True)
     image = models.FileField(upload_to=UploadToPathAndRename(FTP_PUBLIC_DIR + "atlas"), null=True, blank=True)
