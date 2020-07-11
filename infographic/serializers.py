@@ -9,7 +9,7 @@ class InfoSerializer(serializers.ModelSerializer):
 class InfoCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = InfographicCategory
-        fields = ('name', 'id')
+        fields = ('name', 'id', 'image_url')
 
 class InfoAndCategorySerializer(serializers.ModelSerializer):
 
